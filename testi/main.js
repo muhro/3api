@@ -29,7 +29,7 @@ function loopp() {
     }
 
     function timeout(curFunct) {
-        setTimeout(curFunct, 2000);
+        setTimeout(curFunct, 10000);
     }
 
 }

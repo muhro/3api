@@ -3,23 +3,33 @@
 }
 body{
     height: 100vh;
-    background-color: white;
+    background-color: #d2cfd0;
+    background-image: url("myyr.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 .otsikko{
     text-align: center;
-    font-size: 7rem;
+    font-size: 2rem;
     margin-top: 0;
     color: #000000;
+    text-shadow: 4px 2px 20px #d7870e;
 }
 
 .eka{
     height: 100vh;
-    background-color: black;
+    max-height: 26rem;
+}
+iframe{
+    max-height: 33rem;
+    max-width: 34rem;
 }
 .loop{
    height: 100%;
   width: 100%;
     margin: auto;
+    z-index: -3;
 }
 .toka{
     height: 100vh;
@@ -35,17 +45,13 @@ body{
     width: 100%;
     margin: auto;
 }
-header {
-    text-align: center;
-    font-size: 100px;
-    text-shadow: 2px 2px lightgray;
-    color: #000000;
-}
+
 
 h1 {
     text-align: center;
-    color: #000000;
     width: 20rem;
+    color: #000000;
+    text-shadow: 4px 2px 20px #d7870e;
 }
 
 p {
@@ -55,7 +61,7 @@ p {
 
 
 li {
-    color: white;
+    color: #fea101;
     padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 50px;
@@ -63,8 +69,10 @@ li {
 }
 
 
-.app{
+.appp{
     max-width: 60%;
+    border-radius: 9px;
+
 }
 .rowy {
     display: flex;
@@ -77,7 +85,8 @@ li {
     min-width: 65%;
     table-layout: fixed;
     border-spacing: 10px;
-    border-bottom: 6px solid rgba(25, 138, 186, 0.73);
+    border-bottom: 6px solid rgba(0, 0, 0, 0.73);
+    border-radius: 10% 30% 10% 10%/ 80%;
 }
 .Row{
     padding-left: 7rem;
@@ -86,7 +95,6 @@ li {
     max-width: 70%;
     min-width: 45%;
     padding-right: 5rem;
-    border-bottom: 1px solid #aaa;
 
 }
 .columnh{
@@ -96,18 +104,17 @@ li {
 .text {
     padding-left: 20px;
 }
-.otsikko{
-    text-align: center;
-    font-size: 2rem;
-}
+
 
 h2 {
     font-size: 0.6rem;
-    color: black;
+    color: #000000;
+
 }
 .depart{
     text-align: center;
-    padding-right: 0;
+    border-radius: 9px;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.73);
 }
 
 .site{
@@ -155,16 +162,43 @@ a:active {
 .column {
     float: left;
     padding: 10px;
-    border: black;
     width: 13rem;
 
 }
 .columno {
     float: left;
     padding: 10px;
-    border: black;
     width: 27%;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.73);
 }
 .hinta{
     padding-top: 1.5rem;
+}
+.grandPar {
+    font-family: 'Basic', sans-serif;
+    width: 25rem;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+.parent {
+    border-radius: 5px;
+    border-style: solid;
+    border-color: orangered;
+    background-color: orange;
+    color: white;
+}
+
+.weatherDiv {
+    display: inline-block;
+    text-align: left;
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.weatherIcon {
+    display: inline-block;
+    padding: 4px;
+    vertical-align: middle;
 }

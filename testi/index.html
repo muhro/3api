@@ -7,21 +7,22 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<div class="eka" id="eka">
-    <h1 class="otsikko">TERVETULOA YRITYKSEMME SIVUILLE</h1>
+<div class="eka" id="eka" style="height: 28rem;">
+    <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="104407/"></script>
 
 </div>
-
+<div style="height: 28vh;"></div>
 <div class="toka" id="toka">
-   <br>
     <div class="taulukko">
-        <h1> Myyrmäen aseman lähtevät ja saapuvat junat </h1>
-        <div class="depart"></div>
-        <div class="app">
+        <h1 class="otsikko"> Myyrmäen aseman lähtevät ja saapuvat junat </h1>
+
+        <div class="departt"></div>
+        <div class="appp">
         </div>
     </div>
+
 </div>
-<div style="height: 12vh;"></div>
+<div style="height: 28vh;"></div>
 <div class="kolmas" id="kolmas">
     <div class="taulukko">
 
@@ -32,8 +33,17 @@
     </div>
 
    </div>
+<div style="text-align: center" class="grandPar">
+    <div id="parentDiv" class="parent">
+        <div id="weatherDiv" class="weatherDiv">
+        </div>
+        <div id="weatherIcon" class="weatherIcon">
+        </div>
+    </div>
+
+</div>
 </body>
-<script src=""></script>
+<script src="main.js"></script>
 <script>
   fetch('ruoka.json')
   .then(response => response.json())
@@ -49,11 +59,11 @@
 
       moi.innerHTML += (' <div class="row">\n' +
           '\n' +
-          '        <div class="column" + style="background-color:rgb(58, 127, 170, 0.33);">\n' +
+          '        <div class="column" + style="background-color:#fffbfd; border-radius: 20% 0% 0% 10% / 80%;">\n' +
           '         <h2 class="text">'+ruokan+'</h2>\n' +
           '        </div>\n' +
           '\n' +
-          '        <div class="columnh" + style="background-color:#56b9f7;">\n' +
+          '        <div class="columnh" + style="background-color:#fea010; border-radius: 0% 20% 10% 0% / 80%;"">\n' +
           '         <h2 class="hinta">'+ruokah+'  € </h2>\n' +
           '        </div>\n' +
           '      </div>');}
@@ -67,22 +77,22 @@
     .then(vastaus => vastaus.json())
     .then(trains => {
       console.log(trains);
-      const number =  document.querySelector('.app');
-      const depart =  document.querySelector('.depart');
+      const number =  document.querySelector('.appp');
+      const depart =  document.querySelector('.departt');
 
       // luo kategoriat taulun pääle
       for(let p = 0; p < 1; p++){
         depart.innerHTML += (' <div ' +
             '\n' +
-            '        <div class="columno app" + style="background-color:#56b9f7;">\n' +
-            '          <h2>Juna</h2>\n' +
+            '        <div class="columno depart" + style="background-color:#fea010;">\n' +
+            '          <h2>JUNA</h2>\n' +
             '         </div>\n' +
             '\n' +
-            '        <div class="columno depart" + style="background-color:rgb(58, 127, 170, 0.33);">\n' +
+            '        <div class="columno depart" + style="background-color:#fffbfd;">\n' +
             '          <h2>MÄÄRÄNPÄÄ</h2>\n' +
             '        </div>\n' +
             '\n' +
-            '        <div class="columno depart" + style="background-color:#56b9f7;">\n' +
+            '        <div class="columno depart" + style="background-color:#fea010;">\n' +
             '          <h2>SAAPUMISAIKA</h2>\n' +
             '        </div>\n' +
             '      </div>');}
@@ -126,15 +136,15 @@
               // tulostaa aina yhden rivin missä on infot: Junan tyyppi , saapuva vai lähtevä, päätepysäkki
               number.innerHTML += (' <div class="rowy" style="">\n' +
                   '\n' +
-                  '        <div class="column app"  + style="background-color:#56b9f7;">\n' +
+                  '        <div class="column depart"  + style="background-color:#fea010;">\n' +
                   '          <h2>' + trainCategory +' '+ commuterLineID + '</h2>\n' +
                   '         </div>\n' +
                   '\n' +
-                  '        <div class="column depart" + style="background-color:rgb(58, 127, 170, 0.33);">\n' +
+                  '        <div class="column depart" + style="background-color:#fffbfd;">\n' +
                   '          <h2>' + timeTableRows + '</h2>\n' +
                   '         </div>\n' +
                   '\n' +
-                  '       <div class="column depart" + style="background-color:#56b9f7;">\n' +
+                  '       <div class="column depart" + style="background-color:#fea010;">\n' +
                   '          <h2>' + tunnit2 + scheduledTime + '</h2>\n' +
                   '         </div>\n' +
                   '      </div>');
@@ -143,5 +153,43 @@
             myr = 0;
           }}}
     }); }
+
+  let baseUrl = 'https://api.openweathermap.org/data/2.5/weather?id=830153&lang=fi&units=metric&appid=1a48679cb687d62f2b9eb655c4d03b1c';
+  let baseIcon = 'http://openweathermap.org/img/w/';
+
+  fetch(baseUrl).then(vastaus => vastaus.json()).then(weatherCast => {
+    console.log(weatherCast);
+    let temp = Math.round(weatherCast.main.temp);
+    let weath = weatherCast.weather[0].description;
+    let weathIcon = weatherCast.weather[0].icon;
+    let wnd = weatherCast.wind.speed;
+    console.log('Temperature: ' + weatherCast.main.temp);
+    console.log('Sää ennuste: ' + weatherCast.weather[0].description);
+    console.log('Tuulen nopeus: ' + weatherCast.wind.speed);
+    console.log(funcWind());
+
+    let img = document.createElement('img');
+    let divSrc = document.getElementById('weatherIcon');
+    img.src = baseIcon + weathIcon + '.png';
+    divSrc.appendChild(img);
+
+    function funcWind() {
+      if (wnd <= 0.5) {
+        return ', tyyni tuuli';
+      } else if (wnd > 0.5 && wnd < 3.5) {
+        return ', heikko tuuli';
+      }
+      else if (wnd > 3.5 && wnd < 8.0) {
+        return ', kohtalainen tuuli';
+      }
+      else if (wnd > 8.0) {
+        return ', kova tuuli';
+      }
+    }
+
+    document.getElementById('weatherDiv').innerHTML = 'Sää ennuste: ' + weath + funcWind() + '.<br>Lämpötila on: ' +
+        temp + '°C';
+  });
+
 </script>
 </html>
