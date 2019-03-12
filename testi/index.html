@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<div class="eka" id="eka">
+    <h1 class="otsikko">TERVETULOA YRITYKSEMME SIVUILLE</h1>
+
+</div>
+
+<div class="toka" id="toka">
+   <br>
+    <div class="taulukko">
+        <h1> Myyrmäen aseman lähtevät ja saapuvat junat </h1>
+        <div class="depart"></div>
+        <div class="app">
+        </div>
+    </div>
+</div>
+<div style="height: 12vh;"></div>
+<div class="kolmas" id="kolmas">
+    <div class="taulukko">
+
+    <h2 class="otsikko"> Myyrmäen ruokalan ruuat </h2>
+
+    <div class="" id="moi">
+    </div>
+    </div>
+
+   </div>
+</body>
+<script src=""></script>
+<script>
+  fetch('ruoka.json')
+  .then(response => response.json())
+  .then(safka => {
+    console.log(safka, safka.length)
+
+
+
+    let moi = document.getElementById('moi');
+    for (let i = 0; i < safka.length; i++) {
+      let ruokan = safka[i].name;
+      let ruokah = safka[i].price;
+
+      moi.innerHTML += (' <div class="row">\n' +
+          '\n' +
+          '        <div class="column" + style="background-color:rgb(58, 127, 170, 0.33);">\n' +
+          '         <h2 class="text">'+ruokan+'</h2>\n' +
+          '        </div>\n' +
+          '\n' +
+          '        <div class="columnh" + style="background-color:#56b9f7;">\n' +
+          '         <h2 class="hinta">'+ruokah+'  € </h2>\n' +
+          '        </div>\n' +
+          '      </div>');}
+  });
+
+
+  etsiminen();
+  //hakee apista saapuvat ja lähtevät juant 15 aikavälillä, käyttää inputtia hyödyksi
+  function etsiminen(){
+    fetch(`https://rata.digitraffic.fi/api/v1/live-trains/station/Myr?minutes_before_departure=15&minutes_after_departure=15&minutes_before_arrival=15&minutes_after_arrival=15`)
+    .then(vastaus => vastaus.json())
+    .then(trains => {
+      console.log(trains);
+      const number =  document.querySelector('.app');
+      const depart =  document.querySelector('.depart');
+
+      // luo kategoriat taulun pääle
+      for(let p = 0; p < 1; p++){
+        depart.innerHTML += (' <div ' +
+            '\n' +
+            '        <div class="columno app" + style="background-color:#56b9f7;">\n' +
+            '          <h2>Juna</h2>\n' +
+            '         </div>\n' +
+            '\n' +
+            '        <div class="columno depart" + style="background-color:rgb(58, 127, 170, 0.33);">\n' +
+            '          <h2>MÄÄRÄNPÄÄ</h2>\n' +
+            '        </div>\n' +
+            '\n' +
+            '        <div class="columno depart" + style="background-color:#56b9f7;">\n' +
+            '          <h2>SAAPUMISAIKA</h2>\n' +
+            '        </div>\n' +
+            '      </div>');}
+
+
+      let myr = 1;
+      for (let i = 0; i < trains.length; i++) {
+        for (let j = 0; j < trains[i].timeTableRows.length; j++){
+
+          if (myr === 0){
+            myr += 1;
+            if (trains[i].timeTableRows[j].stationShortCode.includes('MYR')){
+
+              let trainCategory = trains[i].trainCategory; // commuter vai Longdistance
+              let commuterLineID = trains[i].commuterLineID; // commuter junan tunniste
+              let timeTableRows = trains[i].timeTableRows[j].type; // tuleva / menevä
+              let stationShortCode = trains[i].timeTableRows.slice(-1)[0].stationShortCode; // Päätepysäkki
+              let trainNumber = trains[i].trainNumber; // junan numero
+              let scheduledTime = trains[i].timeTableRows[j].scheduledTime.slice(13,16); // saapumisaika
+              let tunnit = trains[i].timeTableRows[j].scheduledTime.slice(11,13);
+              let cancel = trains[i].timeTableRows[i].cancelled;
+
+              let tunnit2 = +tunnit + 2;
+
+              if(cancel === true) {
+                scheduledTime = '<p class="cancelled">CANCELLED</p>';
+              }
+
+              if(trainCategory  === 'Long-distance'){
+                trainCategory = 'IC ' + trainNumber;
+              }
+
+              if(commuterLineID === 'P'){
+                timeTableRows = 'AVIAPOLIS'
+              }else{
+                timeTableRows = 'HELSINKI'
+              }
+
+
+
+              // tulostaa aina yhden rivin missä on infot: Junan tyyppi , saapuva vai lähtevä, päätepysäkki
+              number.innerHTML += (' <div class="rowy" style="">\n' +
+                  '\n' +
+                  '        <div class="column app"  + style="background-color:#56b9f7;">\n' +
+                  '          <h2>' + trainCategory +' '+ commuterLineID + '</h2>\n' +
+                  '         </div>\n' +
+                  '\n' +
+                  '        <div class="column depart" + style="background-color:rgb(58, 127, 170, 0.33);">\n' +
+                  '          <h2>' + timeTableRows + '</h2>\n' +
+                  '         </div>\n' +
+                  '\n' +
+                  '       <div class="column depart" + style="background-color:#56b9f7;">\n' +
+                  '          <h2>' + tunnit2 + scheduledTime + '</h2>\n' +
+                  '         </div>\n' +
+                  '      </div>');
+
+            }}else{
+            myr = 0;
+          }}}
+    }); }
+</script>
+</html>
