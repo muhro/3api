@@ -9,22 +9,22 @@ function loopp() {
     timeout(ensim);
 
     function ensim() {
-        if (i === 10) {
+        if (i === 20) {
             location.reload();
         } else {
-            document.getElementById('toka').scrollIntoView({block: 'end', behavior: 'smooth'});
+            document.getElementById('toka').scrollIntoView({block: 'start', behavior: 'smooth'});
             timeout(toin);
         }
     }
 
     function toin() {
-        document.getElementById('kolmas').scrollIntoView({block: 'end', behavior: 'smooth'});
+        document.getElementById('kolmas').scrollIntoView({block: 'start', behavior: 'smooth'});
         timeout(kolm);
     }
 
     function kolm() {
         i++;
-            document.getElementById('eka').scrollIntoView({block: 'end', behavior: 'smooth'});
+            document.getElementById('eka').scrollIntoView({block: 'start', behavior: 'smooth'});
             timeout(ensim);
     }
 

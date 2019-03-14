@@ -7,50 +7,60 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<div class="eka" id="eka" style="height: 28rem;">
-    <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="104407/"></script>
+<div class="backgroundOpacity">
+    <img src="MP-logo.png" class="img">
+    <div class="parentHeight">
+        <div class="eka" id="eka">
+            <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js"
+                    data-fw-param="104407/"></script>
+        </div>
+    </div>
+    <div class="parentHeight">
+        <div class="toka" id="toka">
+            <div class="taulukko">
+                <h1 class="otsikko"> Myyrmäen aseman lähtevät ja saapuvat junat </h1>
 
-</div>
-<div style="height: 28vh;"></div>
-<div class="toka" id="toka">
-    <div class="taulukko">
-        <h1 class="otsikko"> Myyrmäen aseman lähtevät ja saapuvat junat </h1>
+                <div id="depart"></div>
+                <div id="app">
+                </div>
+            </div>
 
-        <div class="departt"></div>
-        <div class="appp">
+        </div>
+    </div>
+    <div style="height: 13vh;"></div>
+    <div class="parentHeight">
+        <div class="kolmas" id="kolmas">
+            <div class="taulukko">
+
+                <h2 class="otsikko"> Myyrmäen ruokalan ruuat </h2>
+
+                <div class="" id="moi">
+                </div>
+            </div>
         </div>
     </div>
 
-</div>
-<div style="height: 28vh;"></div>
-<div class="kolmas" id="kolmas">
-    <div class="taulukko">
 
-    <h2 class="otsikko"> Myyrmäen ruokalan ruuat </h2>
-
-    <div class="" id="moi">
-    </div>
-    </div>
-
-   </div>
 <div style="text-align: center" class="grandPar">
     <div id="parentDiv" class="parent">
+        <div id="weatherClock" class="weatherClock">
+        </div>
         <div id="weatherDiv" class="weatherDiv">
         </div>
         <div id="weatherIcon" class="weatherIcon">
         </div>
     </div>
-
+</div>
+</div>
 </div>
 </body>
 <script src="main.js"></script>
 <script>
-  fetch('ruoka.json')
-  .then(response => response.json())
-  .then(safka => {
-    console.log(safka, safka.length)
+  fetch('ruoka.json').then(response => response.json()).then(safka => {
+    console.log(safka, safka.length);
 
-
+    let koko = safka.slice(0, -2);
+    console.log(koko);
 
     let moi = document.getElementById('moi');
     for (let i = 0; i < safka.length; i++) {
@@ -59,100 +69,104 @@
 
       moi.innerHTML += (' <div class="row">\n' +
           '\n' +
-          '        <div class="column" + style="background-color:#fffbfd; border-radius: 20% 0% 0% 10% / 80%;">\n' +
-          '         <h2 class="text">'+ruokan+'</h2>\n' +
+          '        <div class="column left">\n' +
+          '         <h1 style="color: #fea010">' + ruokan + '</h2>\n' +
           '        </div>\n' +
           '\n' +
-          '        <div class="columnh" + style="background-color:#fea010; border-radius: 0% 20% 10% 0% / 80%;"">\n' +
-          '         <h2 class="hinta">'+ruokah+'  € </h2>\n' +
+          '        <div class="columnh">\n' +
+          '         <h1 style="color: #fea010">' + ruokah + '  € </h2>\n' +
           '        </div>\n' +
-          '      </div>');}
+          '      </div>');
+    }
   });
 
-
   etsiminen();
+
   //hakee apista saapuvat ja lähtevät juant 15 aikavälillä, käyttää inputtia hyödyksi
-  function etsiminen(){
-    fetch(`https://rata.digitraffic.fi/api/v1/live-trains/station/Myr?minutes_before_departure=15&minutes_after_departure=15&minutes_before_arrival=15&minutes_after_arrival=15`)
-    .then(vastaus => vastaus.json())
-    .then(trains => {
-      console.log(trains);
-      const number =  document.querySelector('.appp');
-      const depart =  document.querySelector('.departt');
+  function etsiminen() {
+    fetch(
+        `https://rata.digitraffic.fi/api/v1/live-trains/station/Myr?minutes_before_departure=20&minutes_after_departure=20&minutes_before_arrival=20&minutes_after_arrival=25`).
+        then(vastaus => vastaus.json()).
+        then(trains => {
+          console.log(trains);
+          const number = document.querySelector('#app');
+          const depart = document.querySelector('#depart');
 
-      // luo kategoriat taulun pääle
-      for(let p = 0; p < 1; p++){
-        depart.innerHTML += (' <div ' +
-            '\n' +
-            '        <div class="columno depart" + style="background-color:#fea010;">\n' +
-            '          <h2>JUNA</h2>\n' +
-            '         </div>\n' +
-            '\n' +
-            '        <div class="columno depart" + style="background-color:#fffbfd;">\n' +
-            '          <h2>MÄÄRÄNPÄÄ</h2>\n' +
-            '        </div>\n' +
-            '\n' +
-            '        <div class="columno depart" + style="background-color:#fea010;">\n' +
-            '          <h2>SAAPUMISAIKA</h2>\n' +
-            '        </div>\n' +
-            '      </div>');}
+          // luo kategoriat taulun pääle
+          for (let p = 0; p < 1; p++) {
+            depart.innerHTML += (' <div ' +
+                '\n' +
+                '        <div class="columno depart" + style="background-color:white;">\n' +
+                '          <h1 style="color: #fea010;">JUNA</h1>\n' +
+                '         </div>\n' +
+                '\n' +
+                '        <div class="columno depart middleU" + style="background-color:white;">\n' +
+                '          <h1 style="color: #fea010;">MÄÄRÄNPÄÄ</h1>\n' +
+                '        </div>\n' +
+                '\n' +
+                '        <div class="columno depart" + style="background-color:white;">\n' +
+                '          <h1 style="color: #fea010;">SAAPUMISAIKA</h1>\n' +
+                '        </div>\n' +
+                '      </div>');
+          }
 
+          let myr = 1;
+          for (let i = 0; i < trains.length; i++) {
+            for (let j = 0; j < trains[i].timeTableRows.length; j++) {
 
-      let myr = 1;
-      for (let i = 0; i < trains.length; i++) {
-        for (let j = 0; j < trains[i].timeTableRows.length; j++){
+              if (myr === 0) {
+                myr += 1;
+                if (trains[i].timeTableRows[j].stationShortCode.includes('MYR')) {
 
-          if (myr === 0){
-            myr += 1;
-            if (trains[i].timeTableRows[j].stationShortCode.includes('MYR')){
+                  let trainCategory = trains[i].trainCategory; // commuter vai Longdistance
+                  let commuterLineID = trains[i].commuterLineID; // commuter junan tunniste
+                  let timeTableRows = trains[i].timeTableRows[j].type; // tuleva / menevä
+                  let stationShortCode = trains[i].timeTableRows.slice(-1)[0].stationShortCode; // Päätepysäkki
+                  let trainNumber = trains[i].trainNumber; // junan numero
+                  let scheduledTime = trains[i].timeTableRows[j].scheduledTime.slice(13, 16); // saapumisaika
+                  let tunnit = trains[i].timeTableRows[j].scheduledTime.slice(11, 13);
+                  let cancel = trains[i].timeTableRows[i].cancelled;
 
-              let trainCategory = trains[i].trainCategory; // commuter vai Longdistance
-              let commuterLineID = trains[i].commuterLineID; // commuter junan tunniste
-              let timeTableRows = trains[i].timeTableRows[j].type; // tuleva / menevä
-              let stationShortCode = trains[i].timeTableRows.slice(-1)[0].stationShortCode; // Päätepysäkki
-              let trainNumber = trains[i].trainNumber; // junan numero
-              let scheduledTime = trains[i].timeTableRows[j].scheduledTime.slice(13,16); // saapumisaika
-              let tunnit = trains[i].timeTableRows[j].scheduledTime.slice(11,13);
-              let cancel = trains[i].timeTableRows[i].cancelled;
+                  let tunnit2 = +tunnit + 2;
 
-              let tunnit2 = +tunnit + 2;
+                  if (cancel === true) {
+                    scheduledTime = '<p class="cancelled">CANCELLED</p>';
+                  }
 
-              if(cancel === true) {
-                scheduledTime = '<p class="cancelled">CANCELLED</p>';
+                  if (trainCategory === 'Long-distance') {
+                    trainCategory = 'IC ' + trainNumber;
+                  }
+
+                  if (commuterLineID === 'P') {
+                    timeTableRows = 'Aviapolis';
+                  } else {
+                    timeTableRows = 'Helsinki';
+                  }
+
+                  // tulostaa aina yhden rivin missä on infot: Junan tyyppi , saapuva vai lähtevä, päätepysäkki
+                  number.innerHTML += (' <div class="rowy" style="">\n' +
+                      '\n' +
+                      '        <div class="column1 depart">\n' +
+                      '          <h1 style="color: #fea010">' + commuterLineID + '-' + 'juna' + '</h1>\n' +
+                      '         </div>\n' +
+                      '\n' +
+                      '        <div class="column1 depart middle">\n' +
+                      '          <h1 style="color: #fea010">' + timeTableRows + '</h1>\n' +
+                      '         </div>\n' +
+                      '\n' +
+                      '       <div class="column1 depart" >\n' +
+                      '          <h1 style="color: #fea010">' + tunnit2 + scheduledTime + '</h1>\n' +
+                      '         </div>\n' +
+                      '      </div>');
+
+                }
+              } else {
+                myr = 0;
               }
-
-              if(trainCategory  === 'Long-distance'){
-                trainCategory = 'IC ' + trainNumber;
-              }
-
-              if(commuterLineID === 'P'){
-                timeTableRows = 'AVIAPOLIS'
-              }else{
-                timeTableRows = 'HELSINKI'
-              }
-
-
-
-              // tulostaa aina yhden rivin missä on infot: Junan tyyppi , saapuva vai lähtevä, päätepysäkki
-              number.innerHTML += (' <div class="rowy" style="">\n' +
-                  '\n' +
-                  '        <div class="column depart"  + style="background-color:#fea010;">\n' +
-                  '          <h2>' + trainCategory +' '+ commuterLineID + '</h2>\n' +
-                  '         </div>\n' +
-                  '\n' +
-                  '        <div class="column depart" + style="background-color:#fffbfd;">\n' +
-                  '          <h2>' + timeTableRows + '</h2>\n' +
-                  '         </div>\n' +
-                  '\n' +
-                  '       <div class="column depart" + style="background-color:#fea010;">\n' +
-                  '          <h2>' + tunnit2 + scheduledTime + '</h2>\n' +
-                  '         </div>\n' +
-                  '      </div>');
-
-            }}else{
-            myr = 0;
-          }}}
-    }); }
+            }
+          }
+        });
+  }
 
   let baseUrl = 'https://api.openweathermap.org/data/2.5/weather?id=830153&lang=fi&units=metric&appid=1a48679cb687d62f2b9eb655c4d03b1c';
   let baseIcon = 'http://openweathermap.org/img/w/';
@@ -190,6 +204,29 @@
     document.getElementById('weatherDiv').innerHTML = 'Sää ennuste: ' + weath + funcWind() + '.<br>Lämpötila on: ' +
         temp + '°C';
   });
+
+  function showTime(){
+    let date = new Date();
+    let h = date.getHours(); // 0 - 23
+    let m = date.getMinutes(); // 0 - 59
+
+    if(h == 0){
+      h = 12;
+    }
+
+
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+
+    let time = h + ":" + m;
+    document.getElementById("weatherClock").innerText = time;
+    document.getElementById("weatherClock").textContent = time;
+
+    setTimeout(showTime, 1000);
+
+  }
+
+  showTime();
 
 </script>
 </html>

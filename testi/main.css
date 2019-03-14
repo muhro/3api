@@ -1,64 +1,99 @@
 ::-webkit-scrollbar {
     display: none;
 }
-body{
+
+body {
+    margin: 0;
     height: 100vh;
+    background-size: cover;
     background-color: #d2cfd0;
     background-image: url("myyr.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
 }
-.otsikko{
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 0;
-    color: #000000;
-    text-shadow: 4px 2px 20px #d7870e;
+
+
+.img {
+    position: fixed;
+    width: 8vw;
+    height: auto;
+    right: 15vw;
+    bottom: 2.5vh;
 }
 
-.eka{
+.otsikko {
+    text-align: left;
+    background-color: #fd9f1a;
+    font-size: 20px;
+    margin: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1.5rem;
+    color: white;
+}
+
+.parentHeight {
     height: 100vh;
-    max-height: 26rem;
 }
-iframe{
-    max-height: 33rem;
-    max-width: 34rem;
+
+iframe {
+    border-radius: 4px;
+    max-height: 88vh;
+    max-width: 50vw;
 }
-.loop{
-   height: 100%;
-  width: 100%;
+
+.backgroundOpacity {
+    margin: auto;
+    max-width: 75vw;
+    max-height: 400vh;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.loop {
+    height: 100%;
+    width: 100%;
     margin: auto;
     z-index: -3;
 }
-.toka{
-    height: 100vh;
+
+.toka {
+    margin: auto;
+    max-width: 50vw;
+    min-height: 85vh;
+    border-radius: 4px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    background-color: white;
 }
-.height{
-    height: 6rem;
+
+.kolmas {
+    margin: auto;
+    max-width: 50vw;
+    min-height: 85vh;
+    border-radius: 4px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    background-color: white;
 }
-.kolmas{
-    height: 100vh;
-}
-.kuva{
-    height:100%;
+
+.kuva {
+    height: 100%;
     width: 100%;
     margin: auto;
 }
 
-
 h1 {
     text-align: center;
-    width: 20rem;
     color: #000000;
-    text-shadow: 4px 2px 20px #d7870e;
 }
 
 p {
     color: #000000;
     text-align: center;
 }
-
 
 li {
     color: #fea101;
@@ -68,70 +103,64 @@ li {
     padding-right: 50px;
 }
 
-
-.appp{
+.appp {
     max-width: 60%;
     border-radius: 9px;
 
 }
+
 .rowy {
     display: flex;
     min-width: 65%;
     table-layout: fixed;
     border-spacing: 10px;
+    border-bottom: 1px dashed rgba(190, 190, 190, 1);
+    border-left: 1px dashed rgba(190, 190, 190, 1);
+    border-right: 1px dashed rgba(190, 190, 190, 1);
 }
+
 .row {
     display: flex;
     min-width: 65%;
     table-layout: fixed;
     border-spacing: 10px;
-    border-bottom: 6px solid rgba(0, 0, 0, 0.73);
-    border-radius: 10% 30% 10% 10%/ 80%;
+    border-bottom: 1px dashed rgba(190, 190, 190, 1);
 }
-.Row{
+
+.Row {
     padding-left: 7rem;
 }
-.column{
-    max-width: 70%;
-    min-width: 45%;
-    padding-right: 5rem;
 
+.columnh {
+    float: left;
+    padding: 10px;
+    width: 25vw;
 }
-.columnh{
-    min-width: 50%;
-    text-align: center;
-}
-.text {
-    padding-left: 20px;
-}
-
 
 h2 {
     font-size: 0.6rem;
     color: #000000;
 
 }
-.depart{
-    text-align: center;
-    border-radius: 9px;
-    border-bottom: 6px solid rgba(0, 0, 0, 0.73);
-}
 
-.site{
+.site {
     top: 15rem;
     position: absolute;
     text-align: center;
     width: 100vw;
 }
-.taulukko{
-    max-width: 24rem;
+
+.taulukko {
+    max-height: 0rem;
+    background-color: #fd9f1a;
     margin: auto;
 
 }
 
-a{
+a {
     color: black;
 }
+
 a:link {
     text-decoration: none;
 }
@@ -147,46 +176,71 @@ a:hover {
 a:active {
     text-decoration: underline;
 }
+
 * {
     box-sizing: border-box;
     text-align: center;
-    font-family: "Yu Gothic Medium";
-    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-bottom: 0.6px;
 }
-.cancelled{
+
+.cancelled {
     color: red;
     font-size: 0.9rem;
 }
 
-
 .column {
     float: left;
     padding: 10px;
-    width: 13rem;
-
+    width: 33.3%;
 }
+.column1 {
+    float: left;
+    width: 33.3%;
+}
+
 .columno {
     float: left;
     padding: 10px;
-    width: 27%;
-    border-bottom: 6px solid rgba(0, 0, 0, 0.73);
+    width: 33.3%;
+    border-bottom: 2px solid #505659;
 }
-.hinta{
+
+.middle {
+    border-left: 1px dashed rgba(190, 190, 190, 1);
+    border-right: 1px dashed rgba(190, 190, 190, 1);
+}
+.middleU {
+    border-left: 1px solid rgba(190, 190, 190, 1);
+    border-right: 1px solid rgba(190, 190, 190, 1);
+}
+
+.left {
+    width: 50%;
+  //  border-right: 1px dashed rgba(190, 190, 190, 1);
+}
+
+.hinta {
     padding-top: 1.5rem;
 }
+
 .grandPar {
-    font-family: 'Basic', sans-serif;
-    width: 25rem;
+    font-family: Arial, Helvetica, sans-serif;
     position: fixed;
-    right: 0;
-    bottom: 0;
+    margin: auto;
+    width: 50vw;
+    min-height: 8vh;
+    bottom: 2.5vh;
+    left: 25vw;
 }
 
 .parent {
-    border-radius: 5px;
+    border-radius: 4px;
+    border-width: 1px;
     border-style: solid;
-    border-color: orangered;
-    background-color: orange;
+    border-color: white;
+    background-color: #fd9f1a;
     color: white;
 }
 
@@ -200,5 +254,25 @@ a:active {
 .weatherIcon {
     display: inline-block;
     padding: 4px;
+    vertical-align: middle;
+}
+.weatherClock{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 2rem;
+    padding-right: 30px;
+}
+
+.weatherDiv {
+    display: inline-block;
+    text-align: left;
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.weatherIcon {
+    display: inline-block;
+    padding-left: 30px;
     vertical-align: middle;
 }
